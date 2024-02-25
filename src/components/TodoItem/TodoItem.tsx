@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TodoItem = () => {
+const TodoItem: React.FC = () => {
   return (
     <div className='card mb-2'>
       <div className='card-body d-flex align-items-center gap-3 fs-5'>
