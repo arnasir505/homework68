@@ -1,6 +1,14 @@
-export interface Todo {
+export interface ApiTodo {
   title: string;
   isDone: boolean;
+}
+
+export interface Todo extends ApiTodo {
+  id: string;
+}
+
+export interface ApiTodos {
+  [id: string]: ApiTodo;
 }
 
 export interface TodoListState {
