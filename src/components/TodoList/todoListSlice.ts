@@ -11,11 +11,7 @@ const initialState: TodoListState = {
 export const todoListSlice = createSlice({
   name: 'todoList',
   initialState,
-  reducers: {
-    log: () => {
-      console.log('test');
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchTodoList.pending, (state) => {
       (state.loading = true), (state.error = false);

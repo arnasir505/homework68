@@ -12,3 +12,5 @@ export const todoItemSlice = createSlice({
   initialState,
   reducers: {}
 })
+
+export const todoItemReducer = todoItemSlice.reducer;

@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../app/store';
 import { deleteTodo, fetchTodoList } from '../TodoList/todoListThunks';
+import { addChecked } from './todoItemThunks';
 
 interface Props {
   id: string;
@@ -16,6 +17,11 @@ const TodoItem: React.FC<Props> = ({ id, title, isDone }) => {
     await dispatch(fetchTodoList());
   };
 
+  const onChecked = async (id: string) => {
+    await dispatch(addChecked(id));
+    await dispatch(fetchTodoList());
+  };
+
   return (
     <div className='card mb-2'>
       <div className='card-body d-flex align-items-center gap-3 fs-5'>
@@ -23,6 +29,7 @@ const TodoItem: React.FC<Props> = ({ id, title, isDone }) => {
           className='form-check-input m-0'
           type='checkbox'
           checked={isDone}
+          onChange={() => onChecked(id)}
         />
         <p className='m-0'>{title}</p>
         <button
