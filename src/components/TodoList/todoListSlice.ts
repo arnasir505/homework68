@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TodoListState } from '../../types';
-import { fetchTodoList } from './todoListThunks';
+import { addChecked, fetchTodoList } from './todoListThunks';
 
 const initialState: TodoListState = {
   items: [],
@@ -25,6 +25,15 @@ export const todoListSlice = createSlice({
     });
     builder.addCase(fetchTodoList.rejected, (state) => {
       (state.loading = false), (state.error = true);
+    });
+    builder.addCase(addChecked.fulfilled, (state, action) => {
+      state.items = state.items.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return action.payload.data;
+        } else {
+          return todo;
+        }
+      });
     });
   },
 });

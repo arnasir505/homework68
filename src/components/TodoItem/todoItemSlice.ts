@@ -1,16 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { Todo } from "../../types";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { ApiTodo } from '../../types';
 
-const initialState: Todo = {
-  id: '',
+const initialState: ApiTodo = {
   title: '',
-  isDone: false
-}
+  isDone: false,
+};
 
 export const todoItemSlice = createSlice({
   name: 'todo',
   initialState,
-  reducers: {}
-})
+  reducers: {
+    changeTodo: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      state.title = action.payload;
+    },
+    clearTodo: (state) => {
+      (state.title = ''), (state.isDone = false);
+    },
+  },
+});
 
 export const todoItemReducer = todoItemSlice.reducer;
+export const { changeTodo, clearTodo } = todoItemSlice.actions;
