@@ -8,6 +8,14 @@ export const fetchTodoList = createAsyncThunk('todoList/fetch', async () => {
   return response.data ?? {};
 });
 
+export const addTodo = createAsyncThunk<void, undefined, { state: RootState }>(
+  'todoList/addTodo',
+  async (_arg, thunkApi) => {
+    const currentTodo = thunkApi.getState().todo;
+    await axiosApi.post('/tasks.json', currentTodo);
+  }
+);
+
 export const deleteTodo = createAsyncThunk(
   'todoList/deleteTodo',
   async (id: string) => {
@@ -15,12 +23,11 @@ export const deleteTodo = createAsyncThunk(
   }
 );
 
-
-export const addChecked = createAsyncThunk<
+export const toggleChecked = createAsyncThunk<
   { data: Todo; id: string },
   string,
   { state: RootState }
->('todoList/addChecked', async (id: string, thunkApi) => {
+>('todoList/toggleChecked', async (id: string, thunkApi) => {
   const todos = thunkApi.getState().todoList.items;
   const current = todos.filter((todo) => {
     return todo.id === id;

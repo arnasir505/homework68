@@ -10,10 +10,7 @@ export const todoItemSlice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
-    changeTodo: (
-      state,
-      action: PayloadAction<string>
-    ) => {
+    changeTodo: (state, action: PayloadAction<string>) => {
       state.title = action.payload;
     },
     clearTodo: (state) => {

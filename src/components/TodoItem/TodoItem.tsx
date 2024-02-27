@@ -1,7 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../app/store';
-import { addChecked, deleteTodo, fetchTodoList } from '../TodoList/todoListThunks';
+import {
+  toggleChecked,
+  fetchTodoList,
+  deleteTodo,
+} from '../TodoList/todoListThunks';
 
 interface Props {
   id: string;
@@ -17,7 +21,7 @@ const TodoItem: React.FC<Props> = ({ id, title, isDone }) => {
   };
 
   const onChecked = async (id: string) => {
-    await dispatch(addChecked(id));
+    await dispatch(toggleChecked(id));
   };
 
   return (

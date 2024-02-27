@@ -3,10 +3,9 @@ import TodoItem from '../TodoItem/TodoItem';
 import './TodoList.css';
 import { AppDispatch, RootState } from '../../app/store';
 import { useEffect } from 'react';
-import { fetchTodoList } from './todoListThunks';
+import { addTodo, fetchTodoList } from './todoListThunks';
 import Spinner from '../Spinner/Spinner';
 import { changeTodo, clearTodo } from '../TodoItem/todoItemSlice';
-import { addTodo } from '../TodoItem/todoItemThunks';
 
 const TodoList = () => {
   const dispatch: AppDispatch = useDispatch();
